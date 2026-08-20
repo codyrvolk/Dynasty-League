@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "sleeper": {
+      "command": "bun",
+      "args": ["run", "${CLAUDE_PROJECT_DIR}/vendor/sleeper-api-mcp/src/index.ts"],
+      "env": {
+        "SLEEPER_USERNAME_A": "${SLEEPER_USERNAME_A:-}",
+        "SLEEPER_LEAGUE_A_ID_1": "${SLEEPER_LEAGUE_A_ID_1:-}",
+        "SLEEPER_LEAGUE_A_ID_2": "${SLEEPER_LEAGUE_A_ID_2:-}",
+        "SLEEPER_USERNAME_B": "${SLEEPER_USERNAME_B:-}",
+        "SLEEPER_LEAGUE_B_ID_1": "${SLEEPER_LEAGUE_B_ID_1:-}"
+      }
+    }
+  }
+}
