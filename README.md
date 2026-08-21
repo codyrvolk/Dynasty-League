@@ -16,9 +16,9 @@ Tools for managing a Sleeper dynasty fantasy football league with Claude Code, v
    git clone --recurse-submodules <this repo>
    ```
 
-2. **Install the MCP server's dependencies** (requires [Bun](https://bun.sh)):
+2. **Install the MCP server's dependencies** (requires [Node.js](https://nodejs.org) 18+; the server itself runs via `npx tsx`, no separate runtime needed):
    ```bash
-   cd vendor/sleeper-api-mcp && bun install && cd ../..
+   cd vendor/sleeper-api-mcp && npm install && cd ../..
    ```
 
 3. **Find your Sleeper username and league ID.** The league ID is the number in a league's URL on sleeper.app (e.g. `sleeper.app/leagues/<league_id>/...`). If you only know your username, ask the agent — `get_user_leagues` will list your leagues once a username is configured.
@@ -41,7 +41,12 @@ Tools for managing a Sleeper dynasty fantasy football league with Claude Code, v
 
 The server is a submodule pinned to a specific upstream commit. To pull in upstream changes:
 ```bash
-cd vendor/sleeper-api-mcp && git pull origin main && bun install && cd ../..
+cd vendor/sleeper-api-mcp && git pull origin main && npm install && cd ../..
 git add vendor/sleeper-api-mcp
 git commit -m "Update sleeper-api-mcp submodule"
 ```
+
+## Notes
+
+- The server is run with `npx tsx <path>` (esbuild-based TS execution) rather than the upstream project's own Bun build, so it also works from Claude Code on the web/mobile where the sandbox's network proxy is incompatible with Bun's `fetch`. `NODE_USE_ENV_PROXY=1` in `.mcp.json` is required for Node's fetch to honor `HTTPS_PROXY` in those sandboxes; it's a no-op on a normal laptop with no proxy configured.
+- Upstream's own README documents some tool names (e.g. `get_league`, `analyze_lineup`, `get_nfl_state`) that don't match what the server actually registers — `.claude/agents/dynasty-manager.md` is wired to the real tool names, verified against a live `tools/list` call.
