@@ -1,0 +1,3 @@
+[submodule "vendor/sleeper-api-mcp"]
+	path = vendor/sleeper-api-mcp
+	url = https://github.com/anthonybaldwin/sleeper-api-mcp.git

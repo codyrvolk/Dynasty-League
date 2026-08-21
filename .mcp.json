@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "sleeper": {
+      "command": "npx",
+      "args": ["-y", "tsx", "${CLAUDE_PROJECT_DIR}/vendor/sleeper-api-mcp/src/index.ts"],
+      "env": {
+        "NODE_USE_ENV_PROXY": "1",
+        "SLEEPER_USERNAME_A": "${SLEEPER_USERNAME_A:-}",
+        "SLEEPER_LEAGUE_A_ID_1": "${SLEEPER_LEAGUE_A_ID_1:-}",
+        "SLEEPER_LEAGUE_A_ID_2": "${SLEEPER_LEAGUE_A_ID_2:-}",
+        "SLEEPER_USERNAME_B": "${SLEEPER_USERNAME_B:-}",
+        "SLEEPER_LEAGUE_B_ID_1": "${SLEEPER_LEAGUE_B_ID_1:-}"
+      }
+    }
+  }
+}
